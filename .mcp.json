@@ -1,16 +1,117 @@
 {
-  "servers": {
-    "playwright": {
-      "command": "npx",
-      "args": [
-        "@playwright/mcp@latest"
-      ],
-      "type": "stdio"
-    },
-    "microsoft-docs": {
-      "url": "https://learn.microsoft.com/api/mcp",
-      "type": "http"
-    }
-  },
-  "inputs": []
+	"servers": {
+		"playwright": {
+			"command": "npx",
+			"args": [
+				"@playwright/mcp@latest"
+			],
+			"type": "stdio"
+		},
+		"microsoft-docs": {
+			"url": "https://learn.microsoft.com/api/mcp",
+			"type": "http"
+		},
+		"exa": {
+			"command": "npx",
+			"args": [
+				"-y",
+				"exa-mcp-server"
+			],
+			"env": {
+				"EXA_API_KEY": "${input:EXA_API_KEY}"
+			},
+			"disabled": false,
+			"autoApprove": [
+				"web_search_exa"
+			],
+			"type": "stdio"
+		},
+		"desktop-commander": {
+			"command": "npx",
+			"args": [
+				"-y",
+				"@wonderwhy-er/desktop-commander"
+			],
+			"disabled": false,
+			"autoApprove": [],
+			"type": "stdio"
+		},
+		"fetch": {
+			"command": "npx",
+			"args": [
+				"mcp-fetch-server"
+			],
+			"type": "stdio"
+		},
+		"kubernetes": {
+			"command": "npx",
+			"args": [
+				"-y",
+				"kubernetes-mcp-server@latest"
+			],
+			"type": "stdio"
+		},
+		"context7": {
+			"type": "stdio",
+			"command": "npx",
+			"args": [
+				"-y",
+				"@upstash/context7-mcp",
+				"--api-key",
+				"{$input:CONTEXT7_API_KEY}"
+			]
+		},
+		"azure-devops": {
+			"command": "npx",
+			"args": [
+				"-y",
+				"@azure-devops/mcp",
+				"${input:ado_org}"
+			],
+			"type": "stdio"
+		},
+		"youtube-transcript": {
+			"command": "npx",
+			"args": [
+				"-y",
+				"@kimtaeyoon83/mcp-server-youtube-transcript"
+			],
+			"type": "stdio"
+		},
+		"Python execute": {
+			"type": "http",
+			"url": "https://server.smithery.ai/@STUzhy/py_execute_mcp"
+		},
+		"Microsoft Learn MCP": {
+			"type": "http",
+			"url": "https://server.smithery.ai/@microsoft/learn_mcp"
+		},
+		"memory": {
+			"command": "npx",
+			"args": [
+				"-y",
+				"@modelcontextprotocol/server-memory"
+			]
+		}
+	},
+	"inputs": [
+		{
+			"id": "CONTEXT7_API_KEY",
+			"type": "promptString",
+			"description": "Context7 API Key",
+			"password": true			
+		},
+		{
+			"id": "EXA_API_KEY",
+			"type": "promptString",
+			"description": "Exa API Key",
+			"password": true
+		},
+		{
+			"id": "ado_org",
+			"type": "promptString",
+			"description": "Azure DevOps organization name (e.g. 'contoso')",
+			"password": false
+		}
+	]
 }
